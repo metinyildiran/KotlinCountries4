@@ -47,7 +47,7 @@ class FeedFragment : Fragment() {
 
             swipeRefreshLayout.isRefreshing = false
 
-            viewModel.refreshData()
+            viewModel.refreshFromAPI()
         }
 
         observeLiveData()
