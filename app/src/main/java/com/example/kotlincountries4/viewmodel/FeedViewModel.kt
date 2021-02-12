@@ -7,6 +7,7 @@ import com.example.kotlincountries4.model.Country
 import com.example.kotlincountries4.services.CountryAPIService
 import com.example.kotlincountries4.services.CountryDatabase
 import com.example.kotlincountries4.util.CustomSharedPreferences
+import com.example.kotlincountries4.util.print
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -26,7 +27,7 @@ class FeedViewModel(application: Application) : BaseViewModel(application) {
 
     fun refreshData() {
         val updateTime = customPreferences.getTime()
-        if (updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime){
+        if (updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime) {
             getDataFromSQLite()
         } else {
             getDataFromAPI()
@@ -56,7 +57,8 @@ class FeedViewModel(application: Application) : BaseViewModel(application) {
                 .subscribeWith(object : DisposableSingleObserver<List<Country>>() {
                     override fun onSuccess(t: List<Country>) {
                         storeInSQLite(t)
-                        Toast.makeText(getApplication(), "Countries from API", Toast.LENGTH_LONG).show()
+                        Toast.makeText(getApplication(), "Countries from API", Toast.LENGTH_LONG)
+                            .show()
                     }
 
                     override fun onError(e: Throwable) {

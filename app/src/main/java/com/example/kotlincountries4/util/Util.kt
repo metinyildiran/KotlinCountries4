@@ -8,8 +8,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.R
 import com.bumptech.glide.request.RequestOptions
 
-fun String.print() {
+fun Any.print(): Any {
     println(this)
+    return this
 }
 
 fun ImageView.downloadFromUrl(url: String?, progressDrawable: CircularProgressDrawable) {
